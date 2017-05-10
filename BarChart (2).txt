@@ -1,0 +1,164 @@
+Script started on Mon 14 Nov 2016 08:47:31 PM PST
+[wwong39@hills cs111a]$ cat Bart Chart.java
+import java.util.Scanner;  //Needed for the Scanner class
+
+/**
+  This program display a bar chart comparing each store's sale.
+
+  Wai Wai Wong
+  CS 111A, Section 9:10 AM
+  Lab 3
+  November 13, 2016
+*/
+
+public class BarChart
+{
+  public static void main(String[] args)
+  {
+    int store1, store2, store3, store4, store5;  // To hold sales of 5 stores.
+   
+    // Create a Scanner object for keyboard input.
+    Scanner keyboard = new Scanner(System.in);
+
+    // Get the sales of five stores.
+    do
+    {
+      // Get the sales of first store in this set.
+      System.out.print("Enter today's sale for store 1: ");
+      store1  = keyboard.nextInt();
+      
+      if (store1 < 0 || store1 > 4000 || store1 % 100 != 0)
+      {
+        System.out.println("Invalid sales amount: " + store1 +
+                            "\nSales must be multiple of 100 in range " +
+                            "0-4000, inclusive.");
+      }     
+     } while (store1 < 0 || store1 > 4000 || store1 % 100 != 0);
+   
+    do
+    {
+      // Get the sales of second store in this set.
+      System.out.print("Enter today's sale for store 2: ");
+      store2 = keyboard.nextInt();
+
+      if (store2 < 0 || store2 > 4000 || store2 % 100 !=0)       
+      {
+        System.out.println("Invalid sales amount: " + store2 +
+                            "\nSales must be multiple of 100 in range " +
+                            "0-4000, inclusive.");
+      }
+     } while (store2 < 0 || store2 > 4000 || store2 % 100 != 0);
+
+    do
+    {
+      //Get the sales of third store in this set.
+      System.out.print("Enter today's sale for store 3: ");
+      store3 = keyboard.nextInt();
+
+      if (store3 < 0 || store3 > 4000 || store3 % 100 !=0)       
+      {
+        System.out.println("Invalid sales amount: " + store3 +
+                            "\nSales must be multiple of 100 in range " +
+                            "0-4000, inclusive.");
+      }
+     } while (store3 < 0 || store3 > 4000 || store3 % 100 != 0);
+      
+    do
+    {
+      //Get the sales of fourth store in this set.
+      System.out.print("Enter today's sale for store 4: ");
+      store4 = keyboard.nextInt();
+
+      if (store4 < 0 || store4 > 4000 || store4 % 100 != 0)       
+      {
+        System.out.println("Invalid sales amount: " + store4 +
+                            "\nSales must be multiple of 100 in range " +
+                            "0-4000, inclusive.");
+      }
+     } while (store4 < 0 || store4 > 4000 || store4 % 100 != 0);
+
+    do
+    {
+      //Get the sales of fifth store in this set.
+      System.out.print("Enter today's sale for store5: ");
+      store5 = keyboard.nextInt();
+
+      if (store5 < 0 || store5 > 4000 || store5 % 100 !=0)       
+      {
+        System.out.println("Invalid sales amount: " + store5 +
+                            "\nSales must be multiple of 100 in range " +
+                            "0-4000, inclusive.");
+      }
+     } while (store5 < 0 || store5 > 4000 || store5 % 100 !=0);
+
+    System.out.println("\nSALES BAR CHART");
+    System.out.println("(Each * = $100)");
+    showBarChart(store1, store2, store3, store4, store5);
+ }
+ 
+ /**
+   show BartChart
+ */
+
+ public static void showBarChart(int store1,int store2,int store3,int store4,int store5)
+ {
+   // Bar for store 1
+   System.out.print("Store 1: ");
+   for (int i = 0; i < store1 / 100; i++)
+     System.out.print("*");
+
+   // Bar for store 2
+   System.out.print("\nStore 2: ");
+   for (int i = 0; i < store2 / 100; i++)
+     System.out.print("*"); 
+
+   // Bar for store 3
+   System.out.print("\nStore 3: ");
+   for (int i = 0; i < store3 / 100; i++)
+     System.out.print("*");
+
+   // Bar for store 4
+   System.out.print("\nStore 4: ");
+   for (int i = 0; i < store4 / 100; i++)
+     System.out.print("*");  
+
+   // Bar for store 5
+   System.out.print("\nStore 5: ");
+   for (int i = 0; i < store5 / 100; i++)
+     System.out.print("*"); 
+
+   System.out.println("");	 
+ }
+}
+
+[wwong39@hills cs111a]$ javac Bart Chart.java
+[wwong39@hills cs111a]$ java BarChart
+Enter today's sale for store 1: 4100
+Invalid sales amount: 4100
+Sales must be multiple of 100 in range 0-4000, inclusive.
+Enter today's sale for store 1: 1010
+Invalid sales amount: 1010
+Sales must be multiple of 100 in range 0-4000, inclusive.
+Enter today's sale for store 1: -100
+Invalid sales amount: -100
+Sales must be multiple of 100 in range 0-4000, inclusive.
+Enter today's sale for store 1: 1000
+Enter today's sale for store 2: 1200
+Enter today's sale for store 3: 1800
+Enter today's sale for store 4: 800
+Enter today's sale for store5: 1901
+Invalid sales amount: 1901
+Sales must be multiple of 100 in range 0-4000, inclusive.
+Enter today's sale for store5: 1900
+
+SALES BAR CHART
+(Each * = $100)
+Store 1: **********
+Store 2: ************
+Store 3: ******************
+Store 4: ********
+Store 5: *******************
+[wwong39@hills cs111a]$ exit
+exit
+
+Script done on Mon 14 Nov 2016 08:49:12 PM PST
