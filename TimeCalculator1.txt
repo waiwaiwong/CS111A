@@ -1,0 +1,117 @@
+Script started on Mon 24 Oct 2016 02:11:10 AM PDT
+[wwong39@hills cs111a]$ cat TimeCalculator.java
+import java.util.Scanner;	// Needed for the Scanner class
+import java.text.DecimalFormat; // Needed for DecimalFormat class
+
+/**
+  This program calculate seconds to minutes or hours or days.
+
+  Wai Wai Wong
+  CS 111A, Section 9:10 AM
+  Lab 2
+  October 23, 2016
+*/
+
+public class TimeCalculator
+{
+  public static void main(String[] args)
+  {
+
+    int seconds;	// To hold seconds
+    double minutes;	// To hold minutes
+    double hours;	// To hold hours
+    double days;	// To hold days
+
+    // Create a Scanner object to read input.
+    Scanner keyboard = new Scanner(System.in);
+
+    // Get the number of seconds
+    System.out.print("Enter number of seconds: ");
+    seconds = keyboard.nextInt();
+
+    // Create a DecimalFormat object
+    DecimalFormat formatter = new DecimalFormat("#0.00");
+
+    // If the second is less than zero, let the user know that seconds
+    // May not be less than zero, and no conversion was performed.
+    if (seconds < 0)
+    System.out.println("The number of seconds entered" + 
+                       " may not be less than zero.\n" +
+                       "No conversion was performed.");
+
+    // If the second is greater than or equal to 0 and less than 60
+    // Let the user know no conversion was performed.
+    if (seconds >= 0 && seconds <60)
+    System.out.println(seconds + " seconds is less than 1 minute. " + 
+                       "No conversion was performed.");
+   
+    // If the second is greater than or equal to 60 and less than 3600
+    // Display seconds in minutes.
+    if (seconds >= 60 && seconds < 3600)
+    {
+      minutes = (double)seconds / 60;
+      System.out.println(seconds + " seconds = " + formatter.format(minutes) +
+                         " minutes");
+    }
+
+    // If the second is greater than or equal to 3600 and less than 86400
+    // display seconds to hours
+    if (seconds >= 3600 && seconds < 86400)
+    {
+      hours = (double)seconds / 3600;
+      System.out.println(seconds + " seconds = " + formatter.format(hours) +
+                         " hours");
+    }
+
+    // If the second is greater than or equal to 86400, display seconds
+    // To days
+    if (seconds >= 86400)
+    {
+      days = (double)seconds / 86400;
+      System.out.println(seconds + " seconds = " + formatter.format(days) +
+                         " days");
+    } 
+  }
+}
+[wwong39@hills cs111a]$ javac TimeCalculator.java
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: -1
+The number of seconds entered may not be less than zero.
+No conversion was performed.
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 0
+0 seconds is less than 1 minute. No conversion was performed.
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 59
+59 seconds is less than 1 minute. No conversion was performed.
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 60
+60 seconds = 1.00 minutes
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 540
+540 seconds = 9.00 minutes
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 256
+256 seconds = 4.27 minutes
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 3599
+3599 seconds = 59.98 minutes
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 3600
+3600 seconds = 1.00 hours
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 47371
+47371 seconds = 13.16 hours
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 86399
+86399 seconds = 24.00 hours
+[wwong39@hills cs111a]$ java TimeCalculator
+Enter number of seconds: 86400
+86400 seconds = 1.00 days
+[wwong39@hills cs111a]$ java TimeCalculatorc TimeCalculator.java TimeCalculator      
+Enter number of seconds: 1000000
+1000000 seconds = 11.57 days
+[wwong39@hills cs111a]$ exit
+exit
+
+Script done on Mon 24 Oct 2016 02:13:43 AM PDT
