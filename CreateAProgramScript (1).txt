@@ -1,0 +1,149 @@
+Script started on Thu 08 Dec 2016 03:11:52 AM PST
+[wwong39@hills ~]$ cat CreateAProgram.java
+import java.util.Scanner;  // Needed for the Scanner class.
+
+/**
+  This program accepts a charge account number from the user and determines
+  whether the number is valid by comparing it to a list of valid charge
+  account numbers.
+
+  Wai Wai Wong
+  CS111A, Section 9:10AM
+  Lab 5
+  December 5, 2016
+
+*/
+
+public class CreateAProgram
+{
+  public static void main(String[] args)
+  {
+    int accountNumber;  // Holds the value of account number.
+    String input;       // Hold the value of input from the user.
+    char repeat;        // To hold 'y' or 'n'.
+
+    // Create a Scanner object for keyboard input.
+    Scanner keyboard = new Scanner(System.in);
+
+    // Get as many sets of account numbers as the user wants.
+    do
+    {
+       // Get the account number.
+       System.out.print("Enter a charge account number: ");
+       accountNumber = keyboard.nextInt();
+
+       // Tell user if the account number is valid or not.
+       if (isValid(accountNumber))
+       {
+          System.out.println(accountNumber + " is a valid charge account" +
+                              " number.");
+       }
+       else
+       {
+          System.out.println(accountNumber + " is not a valid charge " +
+                             "account number.");
+       }
+       
+       // Consume the reamining newline.
+       keyboard.nextLine();
+
+       // Ask the user if they  want to enter another charge account number.
+       System.out.println("Would you like to enter another charge account " +
+                          "number (y/n)?");
+       input = keyboard.nextLine();  // Read a line.  
+       repeat = input.charAt(0);     // Get the first char.
+
+    } while (repeat == 'y' || repeat == 'Y');
+  }
+
+  /**
+    The isValid method receives an account number as a parmeter and return
+    true if the account number is valid and false if the account number is not
+    valid.
+    @param accountNumber The account number inputed from the user.
+    @return The boolean value true if the number is valid or else false.
+  */
+
+  public static boolean isValid(int accountNumber)
+  {
+    // This is an array of all the valid account number.
+    int[] validAccountNumber = { 5658845, 4520125, 7895122, 8777541, 8451277,
+                                 1302850, 8080152, 4562555, 5552012, 5050552, 
+                                 7825877, 1250255, 1005231, 6545231, 3852085,
+                                 7576651, 7881200, 4581002 };
+    
+    // Store the value of the account.
+    int storeResults;
+
+    // Calling the method sequentialSearch.
+    storeResults = sequentialSearch(validAccountNumber, accountNumber);
+
+    if (storeResults == -1)
+    {
+       return false;
+    }
+    else
+    {
+       return true;
+    }
+  }
+
+   /**
+     The sequentialSearch method searches an array for
+     a value.
+     @param array The array to search.
+     @param value The value to search for.
+     @return The subscript of the value if found in the
+              array, otherwise -1.
+   */
+
+   public static int sequentialSearch(int[] array,
+                                      int value)
+   {
+      int index;        // Loop control variable
+      int element;      // Element the value is found at
+      boolean found;    // Flag indicating search results
+
+      // Element 0 is the starting point of the search.
+      index = 0;
+
+      // Store the default values element and found.
+      element = -1;
+      found = false;
+
+      // Search the array.
+      while (!found && index < array.length)
+      {
+         if (array[index] == value)
+         {
+            found = true;
+            element = index;
+         }
+         index++;
+      }
+
+      return element;
+   }
+}
+[wwong39@hills ~]$ javac CreateAProgram.java
+[wwong39@hills ~]$ java CreateAProgram
+Enter a charge account number: 1234567
+1234567 is not a valid charge account number.
+Would you like to enter another charge account number (y/n)?
+y
+Enter a charge account number: 5050552
+5050552 is a valid charge account number.
+Would you like to enter another charge account number (y/n)?
+y
+Enter a charge account number: 4581002
+4581002 is a valid charge account number.
+Would you like to enter another charge account number (y/n)?
+y
+Enter a charge account number: 5658845
+5658845 is a valid charge account number.
+Would you like to enter another charge account number (y/n)?
+n
+[wwong39@hills ~]$ exit
+exit
+
+Script done on Thu 08 Dec 2016 03:13:29 AM PST
