@@ -1,0 +1,128 @@
+import java.util.Scanner;
+/**
+ * Wai Wai Wong
+ * Date: 12/12/2017
+ * Lab 4
+ * This program uses a linear linked list 
+ * to represent the items in the queue.
+ */
+public class QueueReferenceBased implements QueueInterface 
+{
+	private Node head;
+	private Node tail;
+	
+
+
+	public QueueReferenceBased() 
+	{
+		head = tail = null;
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return tail==null; // if the queue is empty then tail will be null
+	}
+
+	@Override
+	public void enqueue(Object newItem) throws QueueException
+	{
+		Node newNode = new Node(newItem);
+		if(head==null) {
+			head = tail= newNode;			
+		}
+		else {
+			tail.next = newNode;
+			tail=newNode ;
+		}
+	}
+
+	@Override
+	public Object dequeue() throws QueueException 
+	{
+		if(!isEmpty()) 
+		{
+			Object item = head.item;
+		
+			Node secondNode = head.next;
+			head=secondNode;
+			return item;
+		}
+		else
+		{
+			throw new QueueException("QueueException on dequeue: queue empty");
+		}
+	}
+
+	@Override
+	public void dequeAll() 
+	{
+		head = tail = null; // dequeuing all the elements is equivalent to making 
+							//head and tail reference to null
+	}
+
+	@Override
+	public Object peek() throws QueueException 
+	{
+		if(!isEmpty()) 
+		{
+			return tail.item;
+		}
+		else
+		{
+			throw new QueueException("QueueException on peek: queue empty");
+		}
+	}
+	String reverseListing()
+	{
+		// initializing the string to return
+		String val ="";
+		// if the list is empty, throw exception
+		if(isEmpty())
+		{
+			throw new QueueException("QueueException on reverseListing: queue empty");
+		}
+		// if list is not empty
+		else
+	    // traverse the whole list first to last
+		while(head!=null)
+		{
+		// add each element to the first of value string
+	    // doing the passive reverse listing trick
+		 val = dequeue()+" "+val;
+		}
+		return val; //return reversed list.
+	}
+	public static void main(String [] args) 
+	{
+		Scanner scanner = new Scanner(System.in);
+		int choice =0;
+		QueueReferenceBased queue = new QueueReferenceBased();
+		while(choice!=3) 
+		{
+			System.out.println("1) Add item\r\n" + 
+					"2) Show reverse Queue order\r\n" + 
+					"3) Exit program\r\n" + 
+					"\r\n" + 
+					"Enter your choice (1-3): ");
+			choice= scanner.nextInt();
+			switch (choice)
+			{
+			case 1:
+				System.out.print("Enter item: ");
+				String item  = scanner.next();
+				queue.enqueue(item);
+				break;
+			case 2:		
+				System.out.println(queue.reverseListing());
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+}
+
+
+// end Node class
