@@ -1,0 +1,69 @@
+package bst;
+/**
+ * Wai Wai Wong
+ * Date: 12/18/2017
+ * Lab5
+ */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class DisplayableBST<T> extends BinarySearchTree {
+	// display the BST
+	void display(TreeNode<T>root, int indentation){
+		// if root is not null then recursive call to right subtree
+		if(root!=null) {
+			display(root.rightChild, indentation+1);
+		//print elements of root
+		System.out.println(root.item);
+		// if root is not null then recursive call to left subtree
+			display(root.leftChild, indentation+1);
+	
+		}
+	}
+	//tree sort by in-order traversal
+	void treeSort(TreeNode<T>root) {
+		// if root is not null 
+		if(root!=null) {
+			// then recursive call to left subtree
+			treeSort(root.leftChild);
+			//print elements of root
+		System.out.println(root.item);
+		// recursive call to right subtree
+		treeSort(root.rightChild);
+		}
+		
+	}
+	public static void main(String[] args) throws FileNotFoundException {
+		System.out.println("Tree Sort Program");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter name of input file: ");
+		//get filename
+		String fileName = scanner.next();
+		// initialize empty bst
+		DisplayableBST<String>bst = new DisplayableBST<>();
+		Scanner fileScanner = new Scanner(new File(fileName));
+		//scanner has next element to read
+		while(fileScanner.hasNext()) {
+			//read element
+			String item =fileScanner.next();
+			//convert element to keyed item
+			KeyedItem<String> itemString = new KeyedItem<String>(item);
+			// insert the element to bst
+			bst.insert(itemString);
+		}
+		//get root
+		TreeNode<String> root = bst.root;
+		System.out.println("\nBinary Search Tree: \n");
+		//display tree
+		bst.display(root, 0);
+		System.out.println("\n\nSorted Items:\n");
+		//display sorted tree by in-order traversal
+		bst.treeSort(root);
+		//close scanners
+		fileScanner.close();
+		scanner.close();
+		
+	}
+
+}
